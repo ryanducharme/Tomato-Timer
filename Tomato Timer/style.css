@@ -1,0 +1,23 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-top: 100px;
+}
+
+#timer{
+    font-size: 70px;
+}
+
+button{
+    height: 40px;
+    width: 130px;
+    border-radius: 10px;
+}
+
+.timerButton{
+    background-color: rgb(161, 226, 101);
+}
+
+.controlButton{
+    background-color: rgb(253, 67, 67);
+}
