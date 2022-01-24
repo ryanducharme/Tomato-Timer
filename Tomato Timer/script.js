@@ -43,7 +43,7 @@ function start(){
 function stop(){
     window.clearInterval(interval);
     document.getElementById('startButton').disabled = false;
-    audio.play();
+    
 }
 
 function reset(){
