@@ -1,7 +1,8 @@
 
 var _timeLimit = 25;
 var interval;
-
+var audio = new Audio('mixkit-positive-notification-951.wav');
+audio.volume = 0.5;
 function setTimeLimit(timeLimit){
     stop();
     if(timeLimit === 25){
@@ -33,7 +34,8 @@ function start(){
 
         if(totalSeconds === 0){
             stop();
-            alert('You got a tomato!');
+            // alert('You got a tomato!');
+            audio.play();
         }
     }
 }
@@ -41,6 +43,7 @@ function start(){
 function stop(){
     window.clearInterval(interval);
     document.getElementById('startButton').disabled = false;
+    audio.play();
 }
 
 function reset(){
