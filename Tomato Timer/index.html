@@ -7,15 +7,50 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><button>Account</button></li>
+            </ul>
+        </nav>
+    </header>
     <script src="script.js"></script>
     
-    <button class="timerButton" id='pomodoroButton' onclick="setTimeLimit(25)">25:00</button>
-    <button class="timerButton" onclick='setTimeLimit(5)'>Short Break</button>
-    <button class="timerButton" onclick='setTimeLimit(15)'>Long Break</button>
-    <h1 id='timer'>25:00</h1>
-    <button class="controlButton" id='startButton' onclick='start()'>Start</button>
-    <button class="controlButton" onclick='stop()'>Stop</button>
-    <button class="controlButton" onclick='reset()'>Reset</button>
+    <div id="main-container">
+        <div id="controls-top">
+            <button class="timerButton" id='pomodoroButton' onclick="setTimeLimit(25)">25:00</button>
+            <button class="timerButton" onclick='setTimeLimit(0.05)'>Short Break</button>
+            <button class="timerButton" onclick='setTimeLimit(15)'>Long Break</button>
+        </div>
+        
+        <h1 id='timer'>25:00</h1>
+        <div id="controls-bottom">
+            <button class="controlButton" id='startButton' onclick='start()'>Start</button>
+            <button class="controlButton" onclick='stop()'>Stop</button>
+            <button class="controlButton" onclick='reset()'>Reset</button>
+        </div>
+        
+    </div>
+    <h2>Tomato Collection</h2>
+    <div id="tomato-collection">
+        
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+        <img src="assets\tomato2.png" alt="">
+    </div>
+    
+
     
 </body>
 </html>

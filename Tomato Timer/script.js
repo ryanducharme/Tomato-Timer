@@ -1,7 +1,7 @@
 
 var _timeLimit = 25;
 var interval;
-var audio = new Audio('mixkit-positive-notification-951.wav');
+var audio = new Audio('assets/mixkit-positive-notification-951.wav');
 audio.volume = 0.5;
 function setTimeLimit(timeLimit){
     stop();
