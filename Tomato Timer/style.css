@@ -180,14 +180,17 @@ button {
 	height: 40px;
 	margin: 15px;
 	padding: 15px;
+	max-width: 30em;
+	
 }
 
 #task-list{
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	max-width: 27em;
+	max-width: 28.5em;
 	margin: auto;
+	
 
 }
 
