@@ -181,3 +181,22 @@ button {
 	margin: 15px;
 	padding: 15px;
 }
+
+#task-list{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	max-width: 27em;
+	margin: auto;
+
+}
+
+.task-item{
+	flex-basis: 100%;
+	font-size: 20px;
+	text-align: left;
+	margin: 0.5em;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 0.5em;
+}

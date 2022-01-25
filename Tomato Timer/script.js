@@ -68,6 +68,20 @@ function prependZero(number) {
 }
 
 
+function addTask()
+{
+    
+    var taskData = document.getElementById('add-task-input').value;
+    var taskList = document.getElementById('task-list')
+    // onsole.log(task);
+
+    var newItem = document.createElement('li');
+    newItem.className = 'task-item'
+    newItem.textContent = taskData;
+    taskList.appendChild(newItem);
+    document.getElementById('add-task-input').value = ""
+}
+
 
 
 
