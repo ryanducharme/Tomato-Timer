@@ -57,7 +57,8 @@ table {
 /* CHANGE FONT TO ROBOTO */
 body {
 	font-family: Helvetica, sans-serif;
-	background-color: #ff8b8b;
+	background-color: rgb(255, 173, 173);
+	/* background-color: rgb(66, 66, 66); */
 	/* text-align: center; */
 	/* padding-top: 100px; */
 }
@@ -69,6 +70,7 @@ nav {}
 	font-size: 100px;
 	justify-content: center;
 	margin: 0.5em;
+	
 }
 
 #controls-top {
@@ -94,8 +96,13 @@ h2 {
 	display: flex;
 	justify-content: center;
 	font-size: 30px;
-	margin-top: 2em;
+	margin: auto;
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
 	border-bottom: solid rgb(151, 57, 57) 2px;
+	border-radius: 2px;
+	max-width: 40em;
+	
 }
 
 #tomato-collection {
@@ -132,7 +139,7 @@ button {
 }
 
 .timerButton:hover {
-	background-color: rgb(161, 238, 90);
+	background-color: rgb(146, 218, 79);
 	box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
 	
 	color: #fff;
@@ -149,7 +156,7 @@ button {
 
 
 .timerButton {
-	background-color: rgb(140, 212, 72);
+	background-color: rgb(109, 184, 38);
 }
 
 .controlButton {
@@ -157,10 +164,10 @@ button {
 }
 
 #task-container{
-	
 	display: flex;
 	justify-content: center;
-	/* margin: 1em; */
+	max-width: 30em;
+	margin: auto;
 }
 
 #add-task-button{
@@ -180,7 +187,8 @@ button {
 	height: 40px;
 	margin: 15px;
 	padding: 15px;
-	max-width: 30em;
+	flex-grow: 2;
+	/* max-width: 30em; */
 	
 }
 
@@ -191,7 +199,6 @@ button {
 	max-width: 28.5em;
 	margin: auto;
 	
-
 }
 
 .task-item{
@@ -202,4 +209,6 @@ button {
 	border: 1px solid gray;
 	border-radius: 10px;
 	padding: 0.5em;
+	
+	
 }
