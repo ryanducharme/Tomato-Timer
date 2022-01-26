@@ -75,13 +75,30 @@ function addTask()
     {
         var taskList = document.getElementById('task-list')
         var newItem = document.createElement('li');
+        
+        var deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-task-button';
+        deleteButton.textContent = 'Delete'
+        deleteButton.onclick = deleteTask;
+        
         newItem.className = 'task-item'
         newItem.textContent = taskData;
+
+
+        //create containing div to contain both the button and 
+        //the li which you can then delete by detecting the parent of the clicked event
         taskList.appendChild(newItem);
+        taskList.appendChild(deleteButton);
+
         document.getElementById('add-task-input').value = ""
+
     }   
 }
 
+function deleteTask()
+{
+    this.parentElement.remove();   
+}
 
 
 
