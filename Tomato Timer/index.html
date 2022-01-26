@@ -20,7 +20,7 @@
         <h1 id="title">Tomato Timer</h1>
         <div id="controls-top">
             <button class="timerButton" id='pomodoroButton' onclick="setTimeLimit(25)">25:00</button>
-            <button class="timerButton" onclick='setTimeLimit(0.05)'>5:00</button>
+            <button class="timerButton" onclick='setTimeLimit(5)'>5:00</button>
             <button class="timerButton" onclick='setTimeLimit(15)'>15:00</button>
         </div>
         
@@ -38,8 +38,6 @@
         <input type="text" id="add-task-input" placeholder="Enter a task to complete">
         <button id="add-task-button" onclick="addTask()">Add</button>
         
-    </div>
-    <div>
         <ul id="task-list">
         </ul>
     </div>
