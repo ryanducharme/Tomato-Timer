@@ -77,12 +77,17 @@ function addTask()
         var newItem = document.createElement('li');
         var taskContainer = document.createElement('div');
         var deleteButton = document.createElement('button');
+        var completeButton = document.createElement('button');
 
         taskContainer.className = 'task-item-container';
 
-        deleteButton.className = 'delete-task-button';
+        deleteButton.className = 'task-button';
         deleteButton.textContent = 'Delete'
         deleteButton.onclick = deleteTask;
+        
+        completeButton.className = 'task-button';
+        completeButton.textContent = '&#9989;'
+        completeButton.onclick = completeTask;
         
         newItem.className = 'task-item'
         newItem.textContent = taskData;
@@ -93,7 +98,9 @@ function addTask()
         taskList.appendChild(taskContainer);
 
         taskContainer.appendChild(newItem);
+        taskContainer.appendChild(completeButton);
         taskContainer.appendChild(deleteButton);
+        
 
         document.getElementById('add-task-input').value = ""
 
@@ -105,7 +112,21 @@ function deleteTask()
     this.parentElement.remove();   
 }
 
+function completeTask()
+{
 
+}
+// 16 total fruit emojis. Make a function to compelete a task, or whenever 25 minutes goes by to collect a new randomly given fruit.
+//store completed tasks in local storage? JS Object to represent a task?
 
+const task = {
+    description: '',
+    complete: false,
+    startTime: '',
+    endTime: '',
+    totalTimeTimeToComplete: function(){
+        return this.endTime - this.startTime;
+    }
+}
 
 
