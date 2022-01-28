@@ -8,7 +8,6 @@ let totalSeconds = 25 * 60;
 
 let ALL_TASKS = [];
 let COMPLETED_TASKS = [];
-let FRUIT_COLLECTION = [];
 
 const fruits = {
 
@@ -110,6 +109,7 @@ function start() {
 
         if (totalSeconds === 0) {
             stop();
+            getRandomFruit();
             audio.play();
         }
     }
@@ -151,7 +151,6 @@ function addTask() {
 
         taskContainer.className = 'task-item-container';
         taskContainer.id = id;
-
 
         deleteButton.className = 'task-button';
         deleteButton.innerHTML = '&#10060;'
@@ -209,9 +208,11 @@ function completeTask() {
 //store completed tasks in local storage? JS Object to represent a task?
 
 function getRandomFruit() {
-    var rand = Math.ceil(Math.random() * 15);
-    for (let i = 0; i < fruits.length; i++) {
-        if (fruits[i] == rand) {
+    var rand = Math.ceil(Math.random() * 15 - 1);
+    var fruitKeys = Object.keys(fruits);
+    for (let i = 0; i < fruitKeys.length; i++) {
+        if (fruitKeys[i] == rand) {
+            console.log(fruits[i].Count);
             fruits[i].Count += 1;
         }
     }
