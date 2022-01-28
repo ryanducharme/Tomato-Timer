@@ -86,7 +86,7 @@ function addTask()
         deleteButton.onclick = deleteTask;
         
         completeButton.className = 'task-button';
-        completeButton.textContent = '&#9989;'
+        completeButton.innerHTML = '&#9989;'
         completeButton.onclick = completeTask;
         
         newItem.className = 'task-item'
