@@ -246,7 +246,7 @@ function collectFruit(){
     var storedFruits = JSON.parse(localStorage.getItem('fruitCollection'));
     var fruitKeys = Object.keys(storedFruits);
     //delete all children and then update DOM with newest data  
-    document.getElementById('fruit-collection').innerHTML = '';
+    //document.getElementById('fruit-collection').innerHTML = '';
     //fruitEmoji.innerHTML = '';
     for (let i = 0; i < fruitKeys.length; i++) {
         if (storedFruits[i].Count > 0) {
