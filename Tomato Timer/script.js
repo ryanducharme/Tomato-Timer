@@ -104,7 +104,6 @@ function setTimeLimit(timeLimit) {
 }
 
 // WHEN PRESSING START AFTER PAUSIN IT WILL RESET THE TIMER. FIX THIS PLS
-
 function start() {
 
     document.getElementById('startButton').disabled = true;
@@ -114,7 +113,6 @@ function start() {
         totalSeconds = _timeLimit * 60;
     }
 
-
     function calculateTime() {
 
         totalSeconds -= 1;
@@ -123,7 +121,8 @@ function start() {
 
         if (totalSeconds === 0) {
             stop();
-            getRandomFruit();
+            //getRandomFruit();
+            collectFruit();
             audio.play();
         }
     }
@@ -148,7 +147,6 @@ function prependZero(number) {
         return number;
     }
 }
-
 
 function addTask() {
     var taskData = document.getElementById('add-task-input').value;
@@ -191,8 +189,6 @@ function addTask() {
     }
 }
 
-
-
 function deleteTask() {
     //figure out what LI was clicked and relate that to a position in the ALL_TASKS array
     var clickedID = this.parentElement.id;
@@ -212,13 +208,13 @@ function completeTask() {
     ALL_TASKS.forEach(task => {
         if (task.ID == clickedID) {
             task.complete = true;
-            localStorage.setItem('fruitCollection', JSON.stringify(fruits));
+            
         }
     });
     document.getElementById(clickedID).remove();
-
+    localStorage.setItem('fruitCollection', JSON.stringify(fruits));
     //show our fruit collection
-    showCollectedFruit();
+    collectFruit();
     
 }
 // 16 total fruit emojis. Make a function to compelete a task, or whenever 25 minutes goes by to collect a new randomly given fruit.
@@ -244,27 +240,27 @@ function getFruitByName(name) {
     }
 }
 
-function showCollectedFruit(){
-    //**todo**
+function collectFruit(){
+    
     //loop through fruits, find anything with a counter higher than 0, show that emoji with its count beside it.
-    var fruitKeys = Object.keys(fruits);
+    var storedFruits = JSON.parse(localStorage.getItem('fruitCollection'));
+    var fruitKeys = Object.keys(storedFruits);
+    //delete all children and then update DOM with newest data  
     document.getElementById('fruit-collection').innerHTML = '';
     //fruitEmoji.innerHTML = '';
     for (let i = 0; i < fruitKeys.length; i++) {
-        if (fruits[i].Count > 0) {
-            //delete all children and then update DOM with newest data          
+        if (storedFruits[i].Count > 0) {
             var fruitEmoji = document.createElement('p');
             var count = document.createElement('span');
             fruitEmoji.className = 'emoji';
             count.className = 'count';
-            fruitEmoji.innerHTML = '&#' + fruits[i].HexVal + ';';
-            count.innerHTML = fruits[i].Count;
+            fruitEmoji.innerHTML = '&#' + storedFruits[i].HexVal + ';';
+            count.innerHTML = storedFruits[i].Count;
             document.getElementById('fruit-collection').appendChild(fruitEmoji);
             fruitEmoji.appendChild(count);        
         }  
     }
 }
-
 
 function Task(description, complete, ID) {
     this.description = description;
