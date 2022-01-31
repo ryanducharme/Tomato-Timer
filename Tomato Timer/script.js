@@ -5,71 +5,85 @@ var audio = new Audio('assets/mixkit-positive-notification-951.wav');
 audio.volume = 0.5;
 var isPaused = true;
 let totalSeconds = 25 * 60;
-
 let ALL_TASKS = [];
-let COMPLETED_TASKS = [];
 
 const fruits = {
 
     0: {
         Name: 'Tomato',
-        Count: 0
+        Count: 0,
+        HexVal: '127813'
     },
     1: {
         Name: 'Eggplant',
-        Count: 0
+        Count: 0,
+        HexVal: '127814'
     },
     2: {
         Name: 'Grape',
-        Count: 0
+        Count: 0,
+        HexVal: '127815'
     },
     3: {
         Name: 'Melon',
-        Count: 0
+        Count: 0,
+        HexVal: '127816'
     },
     4: {
         Name: 'Watermelon',
-        Count: 0
+        Count: 0,
+        HexVal: '127817'
     },
     5: {
         Name: 'Orange',
-        Count: 0
+        Count: 0,
+        HexVal: '127818'
     },
     6: {
         Name: 'Lemon',
-        Count: 0
+        Count: 0,
+        HexVal: '127819'
     },
     7: {
         Name: 'Banana',
-        Count: 0
+        Count: 0,
+        HexVal: '127820'
     },
     8: {
         Name: 'Pineapple',
-        Count: 0
+        Count: 0,
+        HexVal: '127821'
     },
     9: {
         Name: 'RedApple',
-        Count: 0
+        Count: 0,
+        HexVal: '127822'
     },
     10: {
         Name: 'GreenApple',
-        Count: 0
+        Count: 0,
+        HexVal: '127823'
     },
     11: {
         Name: 'Pear',
-        Count: 0
+        Count: 0,
+        HexVal: '127824'
     },
     12: {
         Name: 'Peach',
-        Count: 0
+        Count: 0,
+        HexVal: '127825'
     },
+    
     13: {
         Name: 'Cherry',
-        Count: 0
+        Count: 0,
+        HexVal: '127826'
     },
     14: {
         Name: 'Strawberry',
-        Count: 0
+        Count: 0,
+        HexVal: '127827'
     }
 }
 
@@ -173,7 +187,7 @@ function addTask() {
 
         document.getElementById('add-task-input').value = ""
 
-        console.log(ALL_TASKS[0]);
+        
     }
 }
 
@@ -198,11 +212,14 @@ function completeTask() {
     ALL_TASKS.forEach(task => {
         if (task.ID == clickedID) {
             task.complete = true;
+            localStorage.setItem('fruitCollection', JSON.stringify(fruits));
         }
     });
     document.getElementById(clickedID).remove();
 
-    //COMPLETED_TASKS.push();
+    //show our fruit collection
+    showCollectedFruit();
+    
 }
 // 16 total fruit emojis. Make a function to compelete a task, or whenever 25 minutes goes by to collect a new randomly given fruit.
 //store completed tasks in local storage? JS Object to represent a task?
@@ -212,14 +229,40 @@ function getRandomFruit() {
     var fruitKeys = Object.keys(fruits);
     for (let i = 0; i < fruitKeys.length; i++) {
         if (fruitKeys[i] == rand) {
-            console.log(fruits[i].Count);
             fruits[i].Count += 1;
         }
     }
 }
 
-function chooseFruit(name) {
+function getFruitByName(name) {
+    var fruitKeys = Object.keys(fruits);
+    for (let i = 0; i < fruitKeys.length; i++) {
+        if (fruits[i].Name.toLowerCase() == name.toLowerCase()) {
+            console.log(fruits[i].Name);
+            return fruits[i];
+        }
+    }
+}
 
+function showCollectedFruit(){
+    //**todo**
+    //loop through fruits, find anything with a counter higher than 0, show that emoji with its count beside it.
+    var fruitKeys = Object.keys(fruits);
+    document.getElementById('fruit-collection').innerHTML = '';
+    //fruitEmoji.innerHTML = '';
+    for (let i = 0; i < fruitKeys.length; i++) {
+        if (fruits[i].Count > 0) {
+            //delete all children and then update DOM with newest data          
+            var fruitEmoji = document.createElement('p');
+            var count = document.createElement('span');
+            fruitEmoji.className = 'emoji';
+            count.className = 'count';
+            fruitEmoji.innerHTML = '&#' + fruits[i].HexVal + ';';
+            count.innerHTML = fruits[i].Count;
+            document.getElementById('fruit-collection').appendChild(fruitEmoji);
+            fruitEmoji.appendChild(count);        
+        }  
+    }
 }
 
 
