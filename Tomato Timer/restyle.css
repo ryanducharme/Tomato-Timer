@@ -1,0 +1,66 @@
+/* COLOR DATA */
+:root {
+    font-size: 20px;
+    /* font-family: 'Open Sans', sans-serif; */
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Fredoka', sans-serif;
+    --main-font-color: black;
+    /* --main-background-color: rgb(252, 187, 187); */
+    --main-background-color: rgb(105, 190, 80);
+    --main-green:  rgb(105, 190, 80);
+    --main-green-light:  rgb(105, 190, 80);
+    --main-green-dark:  rgb(105, 190, 80);
+}
+*{
+    font-family: 'Fredoka', sans-serif;
+}
+body {
+    background-color: var(--main-background-color);
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: yellowgreen; */
+    justify-content: center;
+}
+
+.break {
+    height: 0;
+    flex-basis: 100;
+}
+
+.emoji {
+    display: inline-block;
+}
+
+.timer-section {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(147, 219, 108);
+    border-radius: 10px;
+}
+
+/* ELEMENT STYLING */
+button {
+    border-radius: 10px;
+    font-size: 2rem;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    margin: 10px;
+    
+}
+
+
+/* TYPOGROPHY */
+#title {
+    font-weight: bold;
+    font-size: 3rem;
+    text-align: center;
+}
+
+#timer {
+    font-size: 12rem;
+}
