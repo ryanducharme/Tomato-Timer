@@ -15,24 +15,24 @@
 <body>
     
     <script src="script.js"></script>
-    <h1 id="title">Fruitydoro</h1>
-    <div class="container ">
-        <div class="timer-section">
-            <div id="controls-top" class="">
-                <button class="" id='pomodoroButton' onclick="setTimeLimit(25)">25:00</button>
-                <button class="" onclick='setTimeLimit(5)'>5:00</button>
-                <button class="" onclick='setTimeLimit(15)'>15:00</button>
-            </div>
-            
-            <h1 id='timer'>25:00</h1>
-            <div id="controls-bottom" class="">
-                <button class="" id='startButton' onclick='start()'>Start</button>
-                <button class="" onclick='stop()'>Stop</button>
-                <button class="" onclick='reset()'>Reset</button>
-            </div>
-        </div>
-        
+   
+    <div class="head card">
+        <h1 id="title">Fruitydoro</h1>
     </div>
+    
+    <div class="container">
+        <div class="timer-section">
+            <button class="card" id='pomodoroButton' onclick="setTimeLimit(25)">25:00</button>
+            <button class="card" onclick='setTimeLimit(5)'>5:00</button>
+            <button class="card" onclick='setTimeLimit(15)'>15:00</button>
+            <h1 id='timer'>25:00</h1>
+            <button class="card" id='startButton' onclick='start()'>Start</button>
+            <button class="card" onclick='stop()'>Stop</button>
+            <button class="card" onclick='reset()'>Reset</button>
+        </div>        
+    </div>
+        
+    
     
     <div class="container">
         <h2>Tasks</h2>

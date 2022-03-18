@@ -1,29 +1,28 @@
 /* COLOR DATA */
 :root {
-    font-size: 20px;
+    font-size: 14pt;
     /* font-family: 'Open Sans', sans-serif; */
     /* font-family: 'Roboto', sans-serif; */
     font-family: 'Fredoka', sans-serif;
-    --main-font-color: black;
+    --main-font-color: #031105;
     /* --main-background-color: rgb(252, 187, 187); */
-    --main-background-color: rgb(105, 190, 80);
-    --main-green:  rgb(105, 190, 80);
-    --main-green-light:  rgb(105, 190, 80);
-    --main-green-dark:  rgb(105, 190, 80);
+    /* --main-background-color: rgb(105, 190, 80); */
+    --main-green:#5ae468;
+    --main-green-light:#8eff99;
+    --main-green-dark:#2bbd39;
+    --main-red: #ff5a5a;
 }
 *{
     font-family: 'Fredoka', sans-serif;
 }
 body {
-    background-color: var(--main-background-color);
+    background-color: var(--main-green);
 }
 
 /* LAYOUT */
 .container {
     display: flex;
-    flex-wrap: wrap;
-    /* background-color: yellowgreen; */
-    justify-content: center;
+    justify-content: center; 
 }
 
 .break {
@@ -37,30 +36,62 @@ body {
 
 .timer-section {
     text-align: center;
-    padding: 20px;
-    background-color: rgb(147, 219, 108);
-    border-radius: 10px;
+    padding: 60px;
+    background-color: var(--main-green-light);
+    border-radius: 50px;
+    margin: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.466);
+
 }
 
 /* ELEMENT STYLING */
 button {
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 2rem;
     padding: 10px;
     background-color: white;
     border: none;
-    margin: 10px;
+    margin: 20px;
+    background-color: var(--main-green);
+    
     
 }
 
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    transition: 0.2s;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.6);
+  }
 
 /* TYPOGROPHY */
 #title {
-    font-weight: bold;
-    font-size: 3rem;
+    /* font-weight: bold; */
+    font-size: 4rem;
     text-align: center;
+    padding: 10px;
+    background-color: var(--main-red);
+    color: #000000;
 }
 
 #timer {
-    font-size: 12rem;
+    font-size: 9rem;
+}
+
+
+/* HELPER */
+.red-border {
+    border: solid 2px red;
+}
+
+.green-border {
+    border: solid 2px green;
+}
+
+.blue-border {
+    border: solid 2px blue;
 }
