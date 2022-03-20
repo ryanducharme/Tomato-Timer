@@ -1,6 +1,6 @@
 
-var _timeLimit = 25;
-var interval;
+let _timeLimit = 25;
+let interval;
 var audio = new Audio('assets/mixkit-positive-notification-951.wav');
 audio.volume = 0.5;
 var isPaused = true;
@@ -103,28 +103,32 @@ function setTimeLimit(timeLimit) {
     reset();
 }
 
-// WHEN PRESSING START AFTER PAUSIN IT WILL RESET THE TIMER. FIX THIS PLS
+
 function start() {
 
-    document.getElementById('startButton').disabled = true;
-    interval = window.setInterval(calculateTime, 1000);
-
+    if(totalSeconds > 0){
+        document.getElementById('startButton').disabled = true;
+        interval = window.setInterval(calculateTime, 1000);
+    }
+    
     if (!isPaused) {
         totalSeconds = _timeLimit * 60;
-    }
+    }    
+}
 
-    function calculateTime() {
 
-        totalSeconds -= 1;
-        document.getElementById('timer').innerHTML =
-            prependZero(Math.floor(totalSeconds / 60)) + ':' + prependZero(totalSeconds % 60);
+function calculateTime() {
 
-        if (totalSeconds === 0) {
-            stop();
-            //getRandomFruit();
-            collectFruit();
-            audio.play();
-        }
+    totalSeconds -= 1;
+    document.getElementById('timer').innerHTML =
+        prependZero(Math.floor(totalSeconds / 60)) + ':' + prependZero(totalSeconds % 60);
+
+    if (totalSeconds === 0) {
+        stop();
+        //getRandomFruit();
+        collectFruit();
+        audio.play();
+
     }
 }
 
@@ -152,7 +156,7 @@ function addTask() {
     var taskData = document.getElementById('add-task-input').value;
 
     if (taskData != "") {
-        var id = Math.ceil(Math.random() * 1000000);
+        var id = Math.ceil(Math.random() * 999999);
         ALL_TASKS.push(new Task(taskData, false, id));
 
         var taskList = document.getElementById('task-list')
@@ -194,11 +198,6 @@ function deleteTask() {
     var clickedID = this.parentElement.id;
     document.getElementById(clickedID).remove();
     ALL_TASKS.splice(ALL_TASKS.indexOf(clickedID), 1);
-
-    //document.getElementById(idClicked).remove();
-
-    // document.getElementById(task.ID).remove();
-    // 
 
 }
 
