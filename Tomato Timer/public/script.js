@@ -8,8 +8,6 @@ let totalSeconds = 25 * 60;
 let ALL_TASKS = [];
 const taskList = document.getElementById('task-list');
 
-
-
 function loadData() {
 
     fetch('/tasks')
@@ -22,7 +20,6 @@ function loadData() {
                 tempTask.innerText = element.detail;
                 taskList.appendChild(tempTask);
             });
-
         })
 }
 
@@ -192,46 +189,6 @@ addTaskButton.addEventListener('click', _ => {
         })
 })
 
-// function addTask() {
-//     var taskData = document.getElementById('add-task-input').value;
-
-//     if (taskData != "") {
-//         var id = Math.ceil(Math.random() * 999999);
-//         ALL_TASKS.push(new Task(taskData, false, id));
-
-//         var taskList = document.getElementById('task-list')
-//         var newItem = document.createElement('li');
-//         var taskContainer = document.createElement('div');
-//         var deleteButton = document.createElement('button');
-//         var completeButton = document.createElement('button');
-
-//         taskContainer.className = 'task-item-container';
-//         taskContainer.id = id;
-
-//         deleteButton.className = 'task-button';
-//         deleteButton.innerHTML = '&#10060;'
-//         deleteButton.onclick = deleteTask;
-
-//         completeButton.className = 'task-button';
-//         completeButton.innerHTML = '&#9989;'
-//         completeButton.onclick = completeTask;
-
-//         newItem.className = 'task-item'
-//         newItem.textContent = taskData;
-
-//         //create containing div to contain both the button and 
-//         //the li which you can then delete by detecting the parent of the clicked event
-//         taskList.appendChild(taskContainer);
-
-//         taskContainer.appendChild(newItem);
-//         taskContainer.appendChild(completeButton);
-//         taskContainer.appendChild(deleteButton);
-
-//         document.getElementById('add-task-input').value = ""
-
-
-//     }
-// }
 
 function deleteTask() {
     //figure out what LI was clicked and relate that to a position in the ALL_TASKS array

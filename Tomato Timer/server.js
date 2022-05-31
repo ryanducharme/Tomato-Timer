@@ -20,21 +20,32 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
 
     //ROUTES
     app.get('/', (req, res) => {
-
       res.sendFile(path.join(__dirname, 'index.html'));
-
-    })
+    });
 
     app.get('/layouttest', (req, res) => {
       res.sendFile(path.join(__dirname, '/public/layouttest.html'));
-    })
+    });
 
     app.get('/newindex', (req, res) => {
-
       res.sendFile(path.join(__dirname, '/public/newindex.html'));
-    })
+    });
 
+    app.get('/tasks', (req, res) => {
+      userDataCollection.find().toArray()
+        .then(result => {
+          res.json(result);
+        })
+        .catch(error => console.error(error))
+    });
 
+    app.get('/tasks/:id', (req, res) => {
+      userDataCollection.findOne()
+        .then(result => {
+          res.json(result);
+        })
+        .catch(error => console.error(error))
+    });
 
     app.post('/tasks', (req, res) => {
       userDataCollection.insertOne(
@@ -44,19 +55,15 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
           res.json('Success');
         })
         .catch(error => console.error(error))
-    })
+    });
 
-    app.get('/tasks', (req, res) => {
+    app.delete('/tasks:id', (req, res) => {
 
-      userDataCollection.find().toArray()
-        .then(result => {
-          res.json(result);
-        })
-        .catch(error => console.error(error))
-    })
+    });
 
     app.listen(port, () => {
-      console.log(`Example app listening on port ${port}`)
-    })
-  })
+      console.log(`App listening on port ${port}`)
+    });
+
+  });
 
