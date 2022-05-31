@@ -20,15 +20,21 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
 
 
     //ROUTES
-    app.get('/', (req, res) => {
-      res.sendFile(path.join(__dirname, 'index.html'));
+    // app.get('/', (req, res) => {
+    //   // res.sendFile(path.join(__dirname, '/newindex.html'));
+    //   res.redirect('/index');
+    // });
+
+    app.get('/login', (req, res) => {
+      res.sendFile(path.join(__dirname, '/public/login.html'));
     });
 
-    app.get('/layouttest', (req, res) => {
-      res.sendFile(path.join(__dirname, '/public/layouttest.html'));
+    app.post('/login', (req, res) => {
+      console.log(req.body);
+      res.sendFile(path.join(__dirname, '/public/newindex.html'));
     });
 
-    app.get('/newindex', (req, res) => {
+    app.get('/index', (req, res) => {
       res.sendFile(path.join(__dirname, '/public/newindex.html'));
     });
 
@@ -45,13 +51,9 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
       userDataCollection.findOne({ _id: ObjectId(req.params.id) })
         .then(result => {
           res.json(result);
-
         })
         .catch(error => console.error(error))
     });
-
-
-
 
     app.post('/tasks', (req, res) => {
       userDataCollection.insertOne(

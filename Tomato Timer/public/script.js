@@ -4,9 +4,20 @@ let interval;
 var audio = new Audio('assets/mixkit-positive-notification-951.wav');
 audio.volume = 0.5;
 var isPaused = true;
-let totalSeconds = 25 * 60;
+let totalSeconds;
+if (window.localStorage.getItem('timeLeft')) {
+    totalSeconds = window.localStorage.getItem('timeLeft');
+} else {
+    window.localStorage.setItem('timeLeft', 1500);
+    totalSeconds = window.localStorage.getItem('timeLeft');
+}
+
+
 let ALL_TASKS = [];
 const taskList = document.getElementById('task-list');
+const addTaskButton = document.getElementById('add-task-button');
+const bigTimer = document.getElementById('timer');
+
 
 function loadData() {
 
@@ -27,9 +38,9 @@ function loadData() {
                 taskList.appendChild(tempTask, delButton);
             });
         })
-}
 
-const addTaskButton = document.getElementById('add-task-button');
+    bigTimer.innerHTML = prependZero(Math.floor(totalSeconds / 60)) + ':' + prependZero(totalSeconds % 60);
+}
 
 const fruits = {
 
@@ -127,7 +138,6 @@ function setTimeLimit(timeLimit) {
     reset();
 }
 
-
 function start() {
 
     if (totalSeconds > 0) {
@@ -140,8 +150,12 @@ function start() {
     }
 }
 
-
 function calculateTime() {
+
+    window.localStorage.setItem('timeLeft', totalSeconds);
+    totalSeconds = localStorage.getItem('timeLeft');
+
+    console.log(window.localStorage);
 
     totalSeconds -= 1;
     document.getElementById('timer').innerHTML =
@@ -152,7 +166,6 @@ function calculateTime() {
         //getRandomFruit();
         collectFruit();
         audio.play();
-
     }
 }
 
@@ -166,6 +179,7 @@ function reset() {
     stop();
     totalSeconds = _timeLimit * 60;
     document.getElementById('timer').innerHTML = _timeLimit + ':00';
+    window.localStorage.setItem('timeLeft', totalSeconds);
 }
 
 function prependZero(number) {
@@ -179,20 +193,22 @@ function prependZero(number) {
 addTaskButton.addEventListener('click', _ => {
 
     var taskData = document.getElementById('add-task-input');
-
-    fetch('/tasks', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            detail: taskData.value
+    console.log(taskData.value);
+    if (taskData.value != "") {
+        fetch('/tasks', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                detail: taskData.value
+            })
         })
-    })
-        .then(res => {
-            if (res.ok) return res.json()
-        })
-        .then(response => {
-            window.location.reload(true)
-        })
+            .then(res => {
+                if (res.ok) return res.json()
+            })
+            .then(response => {
+                window.location.reload(true)
+            })
+    }
 })
 
 
