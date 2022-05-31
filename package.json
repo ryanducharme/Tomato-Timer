@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/ryanducharme/Tomato-Timer/issues"
   },
-  "homepage": "https://github.com/ryanducharme/Tomato-Timer#readme"
+  "homepage": "https://github.com/ryanducharme/Tomato-Timer#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongodb": "^4.6.0",
+    "path": "^0.12.7"
+  }
 }
