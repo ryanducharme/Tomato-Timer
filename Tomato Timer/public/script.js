@@ -17,8 +17,14 @@ function loadData() {
         .then(response => {
             response.forEach(element => {
                 let tempTask = document.createElement('li');
+                let delButton = document.createElement('button');
+                delButton.innerText = 'X'
+                delButton.id = element._id;
+                delButton.addEventListener('click', deleteTask);
                 tempTask.innerText = element.detail;
-                taskList.appendChild(tempTask);
+                tempTask.appendChild(delButton);
+                // taskList.appendChild(delButton);
+                taskList.appendChild(tempTask, delButton);
             });
         })
 }
@@ -191,11 +197,15 @@ addTaskButton.addEventListener('click', _ => {
 
 
 function deleteTask() {
-    //figure out what LI was clicked and relate that to a position in the ALL_TASKS array
-    var clickedID = this.parentElement.id;
-    document.getElementById(clickedID).remove();
-    ALL_TASKS.splice(ALL_TASKS.indexOf(clickedID), 1);
-
+    fetch(`/tasks/${this.id}`, {
+        method: 'DELETE'
+    })
+        .then(res => {
+            if (res.ok) return res.json()
+        })
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+    location.reload();
 }
 
 function completeTask() {
