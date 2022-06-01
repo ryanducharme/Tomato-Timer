@@ -25,6 +25,8 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
     //   res.redirect('/index');
     // });
 
+
+    //LOGIN
     app.get('/login', (req, res) => {
       res.sendFile(path.join(__dirname, '/public/login.html'));
     });
@@ -34,10 +36,25 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
       res.sendFile(path.join(__dirname, '/public/newindex.html'));
     });
 
+    //SIGNUP
+    app.post('/signup', (req, res) => {
+
+      userDataCollection.insertOne({ username: req.body.username, password: req.body.password }).catch(err => console.log(err));
+
+      const cursor = userDataCollection.find({ username: }).toArray()
+        .then(result => {
+          console.log(result);
+        })
+
+      res.sendFile(path.join(__dirname, '/public/newindex.html'));
+    });
+
+    //INDEX
     app.get('/index', (req, res) => {
       res.sendFile(path.join(__dirname, '/public/newindex.html'));
     });
 
+    //TASKS
     app.get('/tasks', (req, res) => {
       userDataCollection.find().toArray()
         .then(result => {
