@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const { json } = require('express/lib/response');
 const { ObjectId } = require('mongodb');
+const { NONAME } = require('dns');
 const MongoClient = require('mongodb').MongoClient;
 const port = 3000;
 
@@ -18,13 +19,11 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
     const db = client.db('FruityDoro');
     const userDataCollection = db.collection('UserData');
 
-
     //ROUTES
     // app.get('/', (req, res) => {
     //   // res.sendFile(path.join(__dirname, '/newindex.html'));
     //   res.redirect('/index');
     // });
-
 
     //LOGIN
     app.get('/login', (req, res) => {
@@ -33,20 +32,34 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
 
     app.post('/login', (req, res) => {
       console.log(req.body);
-      res.sendFile(path.join(__dirname, '/public/newindex.html'));
+      if (req.body.username != "" && req.body.password != "") {
+        userDataCollection.find({ username: req.body.username }).toArray()
+          .then(result => {
+            if (result.length == 0) {
+              console.log('invalid username or password');
+              res.sendStatus(401);
+            } else {
+              res.sendFile(path.join(__dirname, '/public/newindex.html'));
+            }
+          })
+          .catch(err => console.log(err));
+      } else {
+        res.sendStatus(400);
+      }
     });
 
     //SIGNUP
     app.post('/signup', (req, res) => {
-
-      userDataCollection.insertOne({ username: req.body.username, password: req.body.password }).catch(err => console.log(err));
-
-      const cursor = userDataCollection.find({ username: }).toArray()
+      userDataCollection.find({ username: req.body.username }).toArray()
         .then(result => {
-          console.log(result);
-        })
+          if (result.length > 1) {
+            console.log('Name already taken, try again.');
+          } else {
+            userDataCollection.insertOne({ username: req.body.username, password: req.body.password }).catch(err => console.log(err));
+            res.sendFile(path.join(__dirname, '/public/newindex.html'));
+          }
 
-      res.sendFile(path.join(__dirname, '/public/newindex.html'));
+        })
     });
 
     //INDEX
@@ -64,7 +77,7 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
     });
 
     app.get('/tasks/:id', (req, res) => {
-      console.log(req.params.id);
+      // console.log(req.params.id);
       userDataCollection.findOne({ _id: ObjectId(req.params.id) })
         .then(result => {
           res.json(result);
