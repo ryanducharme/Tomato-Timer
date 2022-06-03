@@ -31,13 +31,14 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
     });
 
     app.post('/login', (req, res) => {
-      console.log(req.body);
+      // console.log(req.body);
       if (req.body.username != "" && req.body.password != "") {
-        userDataCollection.find({ username: req.body.username }).toArray()
+        userDataCollection.find({ username: req.body.username })
           .then(result => {
+            console.log(result);
             if (result.length == 0) {
               console.log('invalid username or password');
-              res.sendStatus(401);
+
             } else {
               res.sendFile(path.join(__dirname, '/public/newindex.html'));
             }
@@ -58,7 +59,6 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
             userDataCollection.insertOne({ username: req.body.username, password: req.body.password }).catch(err => console.log(err));
             res.sendFile(path.join(__dirname, '/public/newindex.html'));
           }
-
         })
     });
 
