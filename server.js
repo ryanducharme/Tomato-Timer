@@ -17,6 +17,10 @@ app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 });
 
+app.get('/', function (req, res) {
+  res.sendFile('newindex.html', { root: __dirname + "/public" });
+});
+
 //Connect to DB
 MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.mongodb.net/?retryWrites=true&w=majority', { useUnifiedTopology: true })
   .then(client => {
