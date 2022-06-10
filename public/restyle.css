@@ -68,7 +68,6 @@ body {
     border-radius: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.466);
     background-color: var(--main-green-light);
-    margin-right: -1vw;
 }
 
 .container {
@@ -248,6 +247,5 @@ button {
     border-radius: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.466);
     background-color: var(--main-green-light);
-    margin-right: -1vw;
     min-width: 588px;
 }

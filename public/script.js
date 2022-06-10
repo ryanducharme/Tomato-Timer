@@ -5,6 +5,7 @@ var audio = new Audio('assets/mixkit-positive-notification-951.wav');
 audio.volume = 0.5;
 var isPaused = true;
 let totalSeconds;
+
 if (window.localStorage.getItem('timeLeft')) {
     totalSeconds = window.localStorage.getItem('timeLeft');
 } else {
@@ -154,8 +155,6 @@ function calculateTime() {
 
     window.localStorage.setItem('timeLeft', totalSeconds);
     totalSeconds = localStorage.getItem('timeLeft');
-
-    console.log(window.localStorage);
 
     totalSeconds -= 1;
     document.getElementById('timer').innerHTML =
