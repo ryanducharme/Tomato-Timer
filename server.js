@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 //Connect to DB
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`App listening on port ${port}`)
+});
+
 MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.mongodb.net/?retryWrites=true&w=majority', { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database');
@@ -106,9 +110,7 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
         .catch(error => console.error(error))
     });
 
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`App listening on port ${port}`)
-    });
+
 
   });
 
