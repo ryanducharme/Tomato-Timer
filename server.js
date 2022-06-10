@@ -116,5 +116,6 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
 
 
 
-  });
+  })
+  .catch(err => console.log(err));
 
