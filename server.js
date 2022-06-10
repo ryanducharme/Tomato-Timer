@@ -6,7 +6,7 @@ const { json } = require('express/lib/response');
 const { ObjectId } = require('mongodb');
 const { NONAME } = require('dns');
 const MongoClient = require('mongodb').MongoClient;
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -106,7 +106,7 @@ MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.
         .catch(error => console.error(error))
     });
 
-    app.listen(port, () => {
+    app.listen(process.env.PORT || 3000, () => {
       console.log(`App listening on port ${port}`)
     });
 
