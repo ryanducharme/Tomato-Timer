@@ -6,7 +6,7 @@ const { json } = require('express/lib/response');
 const { ObjectId } = require('mongodb');
 const { NONAME } = require('dns');
 const MongoClient = require('mongodb').MongoClient;
-const port = 3000;
+const port = process.env.PORT || 5000;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
