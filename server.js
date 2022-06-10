@@ -6,8 +6,10 @@ const { json } = require('express/lib/response');
 const { ObjectId } = require('mongodb');
 const { NONAME } = require('dns');
 const MongoClient = require('mongodb').MongoClient;
+const dotenv = require("dotenv")
 const port = process.env.PORT || 5000;
 
+dotenv.config()
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
@@ -21,7 +23,7 @@ app.get('/', function (req, res) {
 });
 
 //Connect to DB
-MongoClient.connect('mongodb+srv://rjdev-test:J9ukuNGfWZWlEsRt@cluster0.b7crfg0.mongodb.net/?retryWrites=true&w=majority', { useUnifiedTopology: true })
+MongoClient.connect(process.env.CONNECTIONSTR, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database');
     const db = client.db('FruityDoro');
