@@ -19,7 +19,8 @@
 
 body {
     background-color: var(--main-green);
-    
+    max-width: 1800px;
+    margin: auto;
 }
 
 
