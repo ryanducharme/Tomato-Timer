@@ -22,23 +22,23 @@ const bigTimer = document.getElementById('timer');
 
 function loadData() {
 
-    fetch('/tasks')
-        .then(res => {
-            if (res.ok) return res.json()
-        })
-        .then(response => {
-            response.forEach(element => {
-                let tempTask = document.createElement('li');
-                let delButton = document.createElement('button');
-                delButton.innerText = 'X'
-                delButton.id = element._id;
-                delButton.addEventListener('click', deleteTask);
-                tempTask.innerText = element.detail;
-                tempTask.appendChild(delButton);
-                // taskList.appendChild(delButton);
-                taskList.appendChild(tempTask, delButton);
-            });
-        })
+    // fetch('/tasks')
+    //     .then(res => {
+    //         if (res.ok) return res.json()
+    //     })
+    //     .then(response => {
+    //         response.forEach(element => {
+    //             let tempTask = document.createElement('li');
+    //             let delButton = document.createElement('button');
+    //             delButton.innerText = 'X'
+    //             delButton.id = element._id;
+    //             delButton.addEventListener('click', deleteTask);
+    //             tempTask.innerText = element.detail;
+    //             tempTask.appendChild(delButton);
+    //             // taskList.appendChild(delButton);
+    //             taskList.appendChild(tempTask, delButton);
+    //         });
+    //     })
 
     bigTimer.innerHTML = prependZero(Math.floor(totalSeconds / 60)) + ':' + prependZero(totalSeconds % 60);
 }
