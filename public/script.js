@@ -1,10 +1,10 @@
-
 let _timeLimit = 25;
 let interval;
 var audio = new Audio('assets/mixkit-positive-notification-951.wav');
 audio.volume = 0.5;
 var isPaused = true;
 let totalSeconds;
+let tasks = [];
 
 if (window.localStorage.getItem('timeLeft')) {
     totalSeconds = window.localStorage.getItem('timeLeft');
@@ -192,50 +192,83 @@ function prependZero(number) {
 addTaskButton.addEventListener('click', _ => {
 
     var taskData = document.getElementById('add-task-input');
-    console.log(taskData.value);
+    // console.log(taskData.value);
+    // let task = {
+    //     id: Math.round(Math.random() * 100000),
+    //     data: taskData.value
+    // }
+
+
     if (taskData.value != "") {
-        fetch('/tasks', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                detail: taskData.value
-            })
-        })
-            .then(res => {
-                if (res.ok) return res.json()
-            })
-            .then(response => {
-                window.location.reload(true)
-            })
+        tasks.push(JSON.stringify(`'id': ${Math.round(Math.random() * 100000)},'data': ${taskData.value}`));
+
+        window.localStorage.setItem('tasks', tasks)
+        const newTask = document.createElement('li');
+        let newTaskData = document.createElement('p');
+
+        let delButton = document.createElement('button');
+        let completeButton = document.createElement('button');
+
+        // newTask.style = 'float: left'
+        completeButton.innerText = 'Done'
+        delButton.innerText = 'X'
+
+        delButton.addEventListener('click', deleteTask);
+        completeButton.addEventListener('click', completeTask);
+        // delButton.style = 'float: right';
+
+        newTaskData.innerText = taskData.value;
+
+        newTask.appendChild(delButton);
+        newTask.appendChild(completeButton);
+        newTask.appendChild(newTaskData)
+        // newTask.innerHTML(taskData.value);
+        // taskList.appendChild(document.createElement('li'));
+        // console.log(window.localStorage.getItem(tasks[0]));
+        taskList.appendChild(newTask);
+        // fetch('/tasks', {
+        //     method: 'post',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({
+        //         detail: taskData.value
+        //     })
+        // })
+        //     .then(res => {
+        //         if (res.ok) return res.json()
+        //     })
+        //     .then(response => {
+        //         window.location.reload(true)
+        //     })
     }
 })
 
 
 function deleteTask() {
-    fetch(`/tasks/${this.id}`, {
-        method: 'DELETE'
-    })
-        .then(res => {
-            if (res.ok) return res.json()
-        })
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-    location.reload();
+    // fetch(`/tasks/${this.id}`, {
+    //     method: 'DELETE'
+    // })
+    //     .then(res => {
+    //         if (res.ok) return res.json()
+    //     })
+    //     .then(data => console.log(data))
+    //     .catch(err => console.log(err));
+    // location.reload();
 }
 
 function completeTask() {
     var clickedID = this.parentElement.id;
-    getRandomFruit();
-    ALL_TASKS.forEach(task => {
-        if (task.ID == clickedID) {
-            task.complete = true;
+    // console.log(clickedID);
+    // getRandomFruit();
+    // ALL_TASKS.forEach(task => {
+    //     if (task.ID == clickedID) {
+    //         task.complete = true;
 
-        }
-    });
-    document.getElementById(clickedID).remove();
-    localStorage.setItem('fruitCollection', JSON.stringify(fruits));
-    //show our fruit collection
-    collectFruit();
+    //     }
+    // });
+    // document.getElementById(clickedID).remove();
+    // localStorage.setItem('fruitCollection', JSON.stringify(fruits));
+    // //show our fruit collection
+    // collectFruit();
 
 }
 // 16 total fruit emojis. Make a function to compelete a task, or whenever 25 minutes goes by to collect a new randomly given fruit.
@@ -266,7 +299,7 @@ function collectFruit() {
     //loop through fruits, find anything with a counter higher than 0, show that emoji with its count beside it.
     var storedFruits = JSON.parse(localStorage.getItem('fruitCollection'));
     var fruitKeys = Object.keys(storedFruits);
-    //delete all children and then update DOM with newest data  
+    //delete all children and then update DOM with newest data
     //document.getElementById('fruit-collection').innerHTML = '';
     //fruitEmoji.innerHTML = '';
     for (let i = 0; i < fruitKeys.length; i++) {
